@@ -1,3 +1,13 @@
-import Footer from '@/components/footer/Footer';
+'use client';
+import styled from '@emotion/styled';
 
-export default function Home() {}
+const Title = styled.div`
+  font-weight: bold;
+`;
+export default function Home() {
+  return (
+    <div>
+      <Title>바인더</Title>
+    </div>
+  );
+}
