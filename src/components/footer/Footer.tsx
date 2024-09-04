@@ -11,6 +11,7 @@ const FooterIconContainer = styled.footer`
   justify-items: center;
   cursor: pointer;
   color: #bdbdbd;
+  gap: 8px;
 
   &:hover {
     color: #81c784;
