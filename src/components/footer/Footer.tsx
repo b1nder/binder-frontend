@@ -5,7 +5,7 @@ import PersonIcon from './svg/person.svg';
 
 import styled from '@emotion/styled';
 
-const TestFooter = styled.footer`
+const FooterIconContainer = styled.footer`
   display: grid;
   flex-direction: column;
   justify-items: center;
@@ -30,18 +30,18 @@ const FooterContainer = styled.div`
 function Footer() {
   return (
     <FooterContainer>
-      <TestFooter>
+      <FooterIconContainer>
         <BinderIcon />
         <p>바인더</p>
-      </TestFooter>
-      <TestFooter>
+      </FooterIconContainer>
+      <FooterIconContainer>
         <PlusIcon />
         <p>바인더 추가</p>
-      </TestFooter>
-      <TestFooter>
+      </FooterIconContainer>
+      <FooterIconContainer>
         <PersonIcon />
         <p>마이페이지</p>
-      </TestFooter>
+      </FooterIconContainer>
     </FooterContainer>
   );
 }
