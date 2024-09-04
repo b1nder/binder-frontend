@@ -1,12 +1,8 @@
 'use client';
+import PlusIcon from './svg/plusIcon.svg';
+import BinderIcon from './svg/binder.svg';
+import PersonIcon from './svg/person.svg';
 
-import { useState, useEffect } from 'react';
-
-import plusIcon from './svg/plusIcon.svg';
-import binderIcon from './svg/binder.svg';
-import personIcon from './svg/person.svg';
-
-import Image from 'next/image';
 import styled from '@emotion/styled';
 
 const TestFooter = styled.footer`
@@ -14,15 +10,19 @@ const TestFooter = styled.footer`
   flex-direction: column;
   justify-items: center;
   cursor: pointer;
-  color: #000000;
+  color: #bdbdbd;
 
   &:hover {
     color: #81c784;
+    &:hover svg {
+      fill: #81c784;
+    }
   }
 `;
 
 const FooterContainer = styled.div`
   display: flex;
+  gap: 4rem;
   justify-content: center;
   background-color: #f7fafc;
 `;
@@ -31,15 +31,15 @@ function Footer() {
   return (
     <FooterContainer>
       <TestFooter>
-        <Image src={binderIcon} alt="binder" style={{ color: '#81c784' }} />
+        <BinderIcon />
         <p>바인더</p>
       </TestFooter>
       <TestFooter>
-        <Image src={plusIcon} alt="plusIcon" />
+        <PlusIcon />
         <p>바인더 추가</p>
       </TestFooter>
       <TestFooter>
-        <Image src={personIcon} alt="personIcon" />
+        <PersonIcon />
         <p>마이페이지</p>
       </TestFooter>
     </FooterContainer>
