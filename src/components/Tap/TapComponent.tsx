@@ -12,10 +12,15 @@ export default function TapComponent({ title }: Props) {
     border-top-right-radius: 10px; /* 오른쪽 상단에 둥근 테두리 적용 */
     transition: all 0.5s ease-out;
     display: flex;
+
+    justify-content: center;
+    height: 40px;
+    max-width: 390px;
+    flex-wrap: wrap;
     justify-content: center;
     &:hover {
       cursor: pointer;
-      transform: translateY(-10px);
+      transform: translateY(-15px);
       height: 56px;
       justify-items: center;
       align-items: center;
@@ -25,7 +30,7 @@ export default function TapComponent({ title }: Props) {
   `;
 
   const Title = styled.div`
-    padding: 8px 29px;
+    padding: 8px 24px;
   `;
 
   return (

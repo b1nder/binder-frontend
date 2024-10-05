@@ -1,15 +1,30 @@
 import styled from '@emotion/styled';
-const TapComponent = styled.div`
-  border: 1px solid #bdbdbd;
-  border-bottom: none;
-  border-top-left-radius: 10px; /* 왼쪽 상단에 둥근 테두리 적용 */
-  border-top-right-radius: 10px; /* 오른쪽 상단에 둥근 테두리 적용 */
-  padding: 8px 29px;
-`;
+import TapComponent from '@/components/Tap/TapComponent';
+
 export default function index() {
+  const titleList = [
+    '전체',
+    '연극',
+    '스포츠',
+    '전시회',
+    '영화',
+    '체험',
+    '카페',
+    '공연',
+    '기타',
+  ];
+  const TapContainer = styled.div`
+    display: flex;
+    max-width: 390px;
+    //height: 80px;
+    flex-wrap: wrap;
+    justify-content: center;
+  `;
   return (
-    <>
-      <TapComponent>전체</TapComponent>
-    </>
+    <TapContainer>
+      {titleList.map((title, index) => (
+        <TapComponent title={title} key={index} />
+      ))}
+    </TapContainer>
   );
 }
