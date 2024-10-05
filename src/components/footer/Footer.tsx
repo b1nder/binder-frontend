@@ -4,6 +4,7 @@ import BinderIcon from './svg/binder.svg';
 import PersonIcon from './svg/person.svg';
 
 import styled from '@emotion/styled';
+import React from 'react';
 
 const FooterContainer = styled.div`
   display: flex;
@@ -40,26 +41,32 @@ const FooterIconContainer = styled.footer`
   }
 `;
 
-const textBox = styled.div`
+const TextBox = styled.div`
   margin: 0;
+  white-space: nowrap;
 `;
 
+interface Menu {
+  name: string;
+  image: React.ReactNode;
+}
+
 function Footer() {
+  const menuList: Menu[] = [
+    { name: '바인더', image: <BinderIcon /> },
+    { name: '바인더 추가', image: <PlusIcon /> },
+    { name: '마이페이지', image: <PersonIcon /> },
+  ];
+
   return (
     <FooterContainer>
       <FooterContent>
-        <FooterIconContainer>
-          <BinderIcon />
-          <p>바인더</p>
-        </FooterIconContainer>
-        <FooterIconContainer>
-          <PlusIcon />
-          <p>바인더 추가</p>
-        </FooterIconContainer>
-        <FooterIconContainer>
-          <PersonIcon />
-          <p>마이페이지</p>
-        </FooterIconContainer>
+        {menuList.map((item, index) => (
+          <FooterIconContainer key={index}>
+            {item.image}
+            <TextBox>{item.name}</TextBox>
+          </FooterIconContainer>
+        ))}
       </FooterContent>
     </FooterContainer>
   );
