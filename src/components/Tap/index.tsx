@@ -20,10 +20,23 @@ export default function index() {
     flex-wrap: wrap;
     justify-content: center;
   `;
+  const TapBox = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: transparent;
+    transition: all 0.1s ease-out;
+    &:hover {
+      cursor: pointer;
+      background-color: #81c784;
+    }
+  `;
   return (
     <TapContainer>
       {titleList.map((title, index) => (
-        <TapComponent title={title} key={index} />
+        <TapBox key={index}>
+          <TapComponent title={title} key={index} />
+        </TapBox>
       ))}
     </TapContainer>
   );

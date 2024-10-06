@@ -6,6 +6,8 @@ interface Props {
 
 export default function TapComponent({ title }: Props) {
   const TapComponent = styled.div`
+    position: relative; /* 가상 요소를 위한 상대적 위치 설정 */
+
     border: 1px solid #bdbdbd;
     border-bottom: none;
     border-top-left-radius: 10px; /* 왼쪽 상단에 둥근 테두리 적용 */
@@ -18,10 +20,10 @@ export default function TapComponent({ title }: Props) {
     max-width: 390px;
     flex-wrap: wrap;
     justify-content: center;
+
     &:hover {
       cursor: pointer;
       transform: translateY(-15px);
-      height: 56px;
       justify-items: center;
       align-items: center;
       color: white;
