@@ -16,7 +16,6 @@ export default function index() {
   const TapContainer = styled.div`
     display: flex;
     max-width: 390px;
-    //height: 80px;
     flex-wrap: wrap;
     justify-content: center;
   `;
