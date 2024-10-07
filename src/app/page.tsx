@@ -1,13 +1,62 @@
 'use client';
 import styled from '@emotion/styled';
+import Tap from '@/components/Tap/index';
+import Button from '@/components/Button/index';
+
+const HomeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 75px);
+  align-items: center;
+  justify-items: center;
+  padding-left: 4px;
+`;
 
 const Title = styled.div`
+  padding-top: 60px;
   font-weight: bold;
+  font-size: 28px;
 `;
+
+const TitleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  width: 100%;
+  gap: 6px;
+  height: fit-content;
+`;
+
+const Message = styled.span`
+  width: 100%;
+  justify-content: center;
+  display: flex;
+`;
+
 export default function Home() {
+  const onClickHandler = () => {
+    console.log('clicked');
+  };
   return (
-    <div>
-      <Title>바인더</Title>
-    </div>
+    <HomeContainer>
+      <TitleContainer>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          <Title>바인더</Title>
+          <Tap />
+        </div>
+      </TitleContainer>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          height: '100%',
+          gap: '16px',
+        }}
+      >
+        <Message>바인더를 추가해주세요</Message>
+        <Button content={'바인더 추가하기'} onClickHandler={onClickHandler} />
+      </div>
+    </HomeContainer>
   );
 }
