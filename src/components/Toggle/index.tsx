@@ -8,7 +8,7 @@ const Toggle = styled.div`
   background-color: #e8edf2;
   border-radius: 40px;
   display: flex;
-  width: 100%;
+  width: 358px;
   height: 56px;
   justify-content: space-around;
 `;
@@ -21,8 +21,10 @@ const ToggleLabel = styled.span<{ isSelected: Boolean }>`
   padding: 12px 56px;
   border-radius: 40px;
   width: 171px;
+  height: 48px;
   background-color: ${(props) => (props.isSelected ? '#81c784' : '#e8edf2')};
-  color: ${(props) => (props.isSelected ? 'white' : 'black')};
+  color: ${(props) => (props.isSelected ? 'white' : '#C1C1C1')};
+  transition: all 0.3s ease-out;
 
   &:hover {
     cursor: pointer;
