@@ -2,6 +2,7 @@
 import styled from '@emotion/styled';
 import ToggleComponent from '@/components/Toggle';
 import Button from '@/components/Button';
+import { Category } from '@/app/add/Category';
 export default function add() {
   const Title = styled.span`
     font-weight: bold;
@@ -52,6 +53,7 @@ export default function add() {
       outline: none;
     }
   `;
+  let contents = ['공연', '스포츠', '연극', '영화', '체험', '카페', '기타'];
   return (
     <PageContainer>
       <Title style={{ padding: '16px' }}>바인더 추가</Title>
@@ -76,6 +78,7 @@ export default function add() {
         <InputContainer>
           <Title>문화생활</Title>
           <p>카테고리</p>
+          <Category contents={contents} />
           <p>티켓 첨부하기</p>
           <p>사진 첨부하기</p>
           <p>장소 등록</p>
