@@ -1,9 +1,12 @@
 'use client';
+import { useState } from 'react';
 import styled from '@emotion/styled';
 import ToggleComponent from '@/components/Toggle';
 import Button from '@/components/Button';
 import { Category } from '@/app/add/Category';
-export default function add() {
+export default function Add() {
+  const [selected, setSelected] = useState('공연');
+
   const Title = styled.span`
     font-weight: bold;
     font-size: 18px;
@@ -27,6 +30,7 @@ export default function add() {
     flex-direction: column;
     padding: 16px;
     gap: 16px;
+    width: 358px;
   `;
   const Input = styled.input`
     background-color: #e8edf2;
@@ -78,7 +82,11 @@ export default function add() {
         <InputContainer>
           <Title>문화생활</Title>
           <p>카테고리</p>
-          <Category contents={contents} />
+          <Category
+            contents={contents}
+            selected={selected}
+            setSelected={setSelected}
+          />
           <p>티켓 첨부하기</p>
           <p>사진 첨부하기</p>
           <p>장소 등록</p>
