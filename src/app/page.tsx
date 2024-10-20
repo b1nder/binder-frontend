@@ -55,7 +55,11 @@ export default function Home() {
         }}
       >
         <Message>바인더를 추가해주세요</Message>
-        <Button content={'바인더 추가하기'} onClickHandler={onClickHandler} />
+        <Button
+          content={'바인더 추가하기'}
+          onClickHandler={onClickHandler}
+          width={'179px'}
+        />
       </div>
     </HomeContainer>
   );
