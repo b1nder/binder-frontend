@@ -6,6 +6,8 @@ import Button from '@/components/Button';
 import { Category } from '@/app/add/Category';
 export default function Add() {
   const [selected, setSelected] = useState('공연');
+  const [selectedCategory, setSelectedCategory] =
+    useState<Category>('문화생활');
 
   const Title = styled.span`
     font-weight: bold;
@@ -58,10 +60,14 @@ export default function Add() {
     }
   `;
   let contents = ['공연', '스포츠', '연극', '영화', '체험', '카페', '기타'];
+
   return (
     <PageContainer>
       <Title style={{ padding: '16px' }}>바인더 추가</Title>
-      <ToggleComponent />
+      <ToggleComponent
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+      />
       <Content className={'content'}>
         <InputContainer>
           <Title>제목</Title>
@@ -79,20 +85,22 @@ export default function Add() {
             <option value={'ME'}>ME</option>
           </Select>
         </InputContainer>
-        <InputContainer>
-          <Title>문화생활</Title>
-          <p>카테고리</p>
-          <Category
-            contents={contents}
-            selected={selected}
-            setSelected={setSelected}
-          />
-          <p>티켓 첨부하기</p>
-          <p>사진 첨부하기</p>
-          <p>장소 등록</p>
-        </InputContainer>
+        {selectedCategory === '문화생활' && (
+          <InputContainer>
+            <Title>문화생활</Title>
+            <p>카테고리</p>
+            <Category
+              contents={contents}
+              selected={selected}
+              setSelected={setSelected}
+            />
+            <p>티켓 첨부하기</p>
+            <input type="file" multiple accept="image/*" />
+            <p>사진 첨부하기</p>
+            <p>장소 등록</p>
+          </InputContainer>
+        )}
       </Content>
-
       <Button content="추가" onClickHandler={clickHandler} width={'358px'} />
     </PageContainer>
   );
