@@ -2,6 +2,7 @@
 import styled from '@emotion/styled';
 import Tap from '@/components/Tap/index';
 import Button from '@/components/Button/index';
+import { useRouter } from 'next/navigation';
 
 const HomeContainer = styled.div`
   display: flex;
@@ -34,8 +35,9 @@ const Message = styled.span`
 `;
 
 export default function Home() {
+  const router = useRouter();
   const onClickHandler = () => {
-    console.log('clicked');
+    router.push('/add');
   };
   return (
     <HomeContainer>
