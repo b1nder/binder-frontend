@@ -1,4 +1,5 @@
 'use client';
+import { useLayoutEffect, useState } from 'react';
 import './globals.css';
 import localFont from 'next/font/local';
 import Footer from '@/components/footer/Footer';
@@ -18,8 +19,8 @@ const FooterBox = styled.div`
   max-height: 100vh;
 `;
 
-const ContentWrapper = styled.div`
-  padding-bottom: 75px;
+const ContentWrapper = styled.div<{ footerHeight: number }>`
+  padding-bottom: ${({ footerHeight }) => footerHeight}px;
 `;
 
 export default function RootLayout({
@@ -27,13 +28,22 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [footerHeight, setFooterHeight] = useState(75);
+
+  useLayoutEffect(() => {
+    const footerElement = document.getElementById('footer-box');
+    if (footerElement) {
+      setFooterHeight(footerElement.clientHeight);
+    }
+  }, []);
+
   return (
     <html className={pretendard.className} lang="en">
       <body>
-        <ContentWrapper> {children}</ContentWrapper>
         <FooterBox>
           <Footer />
         </FooterBox>
+        <ContentWrapper footerHeight={footerHeight}> {children}</ContentWrapper>
       </body>
     </html>
   );
