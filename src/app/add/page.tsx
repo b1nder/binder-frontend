@@ -4,61 +4,64 @@ import styled from '@emotion/styled';
 import ToggleComponent from '@/components/Toggle';
 import Button from '@/components/Button';
 import { Category } from '@/app/add/Category';
+
+const Title = styled.span`
+  font-weight: bold;
+  font-size: 18px;
+`;
+const clickHandler = () => {
+  console.log('clicked');
+};
+const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-width: 390px;
+  align-items: center;
+`;
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
+const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 16px;
+  width: 358px;
+`;
+const Input = styled.input`
+  background-color: #e8edf2;
+  border: 0;
+  width: 358px;
+  height: 56px;
+  border-radius: 12px;
+  padding: 16px;
+  &:focus {
+    outline: none;
+  }
+  ::placeholder {
+    color: #4f7396;
+  }
+`;
+const Select = styled.select`
+  padding: 16px;
+  border-radius: 12px;
+  background-color: #e8edf2;
+  border: 0;
+  color: #4f7396;
+  height: 56px;
+  &:focus {
+    outline: none;
+  }
+`;
+
 export default function Add() {
   const [selected, setSelected] = useState('공연');
   const [selectedCategory, setSelectedCategory] =
     useState<Category>('문화생활');
 
-  const Title = styled.span`
-    font-weight: bold;
-    font-size: 18px;
-  `;
-  const clickHandler = () => {
-    console.log('clicked');
-  };
-  const PageContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    min-width: 390px;
-    align-items: center;
-  `;
-  const Content = styled.div`
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  `;
-  const InputContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    padding: 16px;
-    gap: 16px;
-    width: 358px;
-  `;
-  const Input = styled.input`
-    background-color: #e8edf2;
-    border: 0;
-    width: 358px;
-    height: 56px;
-    border-radius: 12px;
-    padding: 16px;
-    &:focus {
-      outline: none;
-    }
-    ::placeholder {
-      color: #4f7396;
-    }
-  `;
-  const Select = styled.select`
-    padding: 16px;
-    border-radius: 12px;
-    background-color: #e8edf2;
-    border: 0;
-    color: #4f7396;
-    height: 56px;
-    &:focus {
-      outline: none;
-    }
-  `;
+  type Category = '문화생활' | '일정';
   let contents = ['공연', '스포츠', '연극', '영화', '체험', '카페', '기타'];
 
   return (
