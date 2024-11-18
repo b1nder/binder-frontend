@@ -1,5 +1,6 @@
 'use client';
 import { useLayoutEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import './globals.css';
 import localFont from 'next/font/local';
 import Footer from '@/components/footer/Footer';
@@ -37,13 +38,16 @@ export default function RootLayout({
     }
   }, []);
 
+  const pathname = usePathname();
   return (
     <html className={pretendard.className} lang="en">
       <body>
-        <FooterBox>
-          <Footer />
-        </FooterBox>
         <ContentWrapper footerHeight={footerHeight}> {children}</ContentWrapper>
+        {pathname !== '/add' && (
+          <FooterBox id="footer-box">
+            <Footer />
+          </FooterBox>
+        )}
       </body>
     </html>
   );
