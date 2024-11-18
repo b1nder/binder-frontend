@@ -15,7 +15,11 @@ const FooterBox = styled.div`
   position: absolute;
   bottom: 0;
   background-color: #e8edf2;
-  height: 75px;
+  max-height: 100vh;
+`;
+
+const ContentWrapper = styled.div`
+  padding-bottom: 75px;
 `;
 
 export default function RootLayout({
@@ -26,7 +30,7 @@ export default function RootLayout({
   return (
     <html className={pretendard.className} lang="en">
       <body>
-        {children}
+        <ContentWrapper> {children}</ContentWrapper>
         <FooterBox>
           <Footer />
         </FooterBox>

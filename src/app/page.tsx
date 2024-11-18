@@ -34,6 +34,14 @@ const Message = styled.span`
   display: flex;
 `;
 
+const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  gap: '16px';
+`;
+
 export default function Home() {
   const router = useRouter();
   const onClickHandler = () => {
@@ -47,22 +55,14 @@ export default function Home() {
           <Tap />
         </div>
       </TitleContainer>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          height: '100%',
-          gap: '16px',
-        }}
-      >
+      <ContentContainer>
         <Message>바인더를 추가해주세요</Message>
         <Button
           content={'바인더 추가하기'}
           onClickHandler={onClickHandler}
           width={'179px'}
         />
-      </div>
+      </ContentContainer>
     </HomeContainer>
   );
 }
