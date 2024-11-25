@@ -4,12 +4,12 @@
   --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
-
+  --font-pretendard: 'Pretendard';
   body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #f7fafc;
+    background-color: #fff;
     height: 100vh;
   }
 
