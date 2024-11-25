@@ -2,6 +2,7 @@
 import styled from '@emotion/styled';
 import Tap from '@/components/Tap/index';
 import Button from '@/components/Button/index';
+import { useRouter } from 'next/navigation';
 
 const HomeContainer = styled.div`
   display: flex;
@@ -33,9 +34,18 @@ const Message = styled.span`
   display: flex;
 `;
 
+const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  gap: '16px';
+`;
+
 export default function Home() {
+  const router = useRouter();
   const onClickHandler = () => {
-    console.log('clicked');
+    router.push('/add');
   };
   return (
     <HomeContainer>
@@ -45,18 +55,14 @@ export default function Home() {
           <Tap />
         </div>
       </TitleContainer>
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          height: '100%',
-          gap: '16px',
-        }}
-      >
+      <ContentContainer>
         <Message>바인더를 추가해주세요</Message>
-        <Button content={'바인더 추가하기'} onClickHandler={onClickHandler} />
-      </div>
+        <Button
+          content={'바인더 추가하기'}
+          onClickHandler={onClickHandler}
+          width={'179px'}
+        />
+      </ContentContainer>
     </HomeContainer>
   );
 }

@@ -2,8 +2,6 @@
 import styled from '@emotion/styled';
 import { useState } from 'react';
 
-type Category = '문화생활' | '일정';
-
 const Toggle = styled.div`
   background-color: #e8edf2;
   border-radius: 40px;
@@ -32,10 +30,18 @@ const ToggleLabel = styled.span<{ isSelected: Boolean }>`
     color: white;
   }
 `;
+type Category = '문화생활' | '일정';
 
-export default function ToggleComponent() {
-  const [selectedCategory, setSelectedCategory] =
-    useState<Category>('문화생활');
+type ToggleComponentProps = {
+  selectedCategory: Category;
+  setSelectedCategory: (category: Category) => void;
+};
+
+export default function ToggleComponent({
+  selectedCategory,
+  setSelectedCategory,
+}: ToggleComponentProps) {
+  const [culture, setCulture] = useState<boolean>(true);
 
   return (
     <Toggle className="toggle">
