@@ -1,5 +1,6 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+
 import styled from '@emotion/styled';
 
 //import component
@@ -7,6 +8,7 @@ import { Category } from '@/app/add/Category';
 import ToggleComponent from '@/components/Toggle';
 import Button from '@/components/Button';
 import Calendar from '@/components/Calendar';
+import ImageSlider from '@/components/ImageSlider';
 
 const Title = styled.span`
   font-weight: bold;
@@ -42,7 +44,6 @@ const Input = styled.input`
   background-color: #fff;
   border: 0;
   font-size: 18px;
-  font-family: pretendard;
   width: 358px;
   height: 56px;
   border-bottom: 2px solid #dfdfdf;
@@ -60,7 +61,6 @@ const Select = styled.select`
   padding: 16px;
   border-radius: 12px;
   background-color: #fff;
-  border: 0;
   color: #4f7396;
   height: 56px;
   border: 2px solid #dfdfdf;
@@ -80,7 +80,7 @@ const InputBox = styled.label`
   justify-content: center;
   align-items: center;
   border: 1px solid #dfdfdf;
-  background-color: #dfdfdf;
+  background-color: #e8edf2;
   color: #9e9e9e;
   width: 358px;
   height: 140px;
@@ -90,41 +90,85 @@ const InputBox = styled.label`
   }
 `;
 const ImagePreview = styled.img`
-  width: 100%;
-  heigh: 100%;
+  width: 358px;
+  height: 140px;
+  border-radius: 12px;
+  object-fit: cover;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.5;
+  }
 `;
+const ImagePreviewWrapper = styled.div`
+  position: relative;
+  width: 358px;
+  height: 140px;
+  border-radius: 12px;
+  &:hover > div {
+    opacity: 1;
+  }
+`;
+const DeleteIcon = styled.div`
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  background-color: whitesmoke;
+  color: rgba(0, 0, 0, 0.5);
+  //color: white;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  &:hover {
+    color: red;
+  }
+`;
+
+type Category = '문화생활' | '일정';
+type Value = Date[] | Date | null;
+
 export default function Add() {
-  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
-  const [previewUrls, setPreviewUrls] = useState<string[]>([]);
+  // 티켓 사진 상태 변수들
+  const [selectedTicketImgFiles, setSelectedTicketImgFiles] = useState<File[]>(
+    []
+  );
+  const [ticketPreviewUrls, setTicketPreviewUrls] = useState<string[]>([]);
 
   const [selected, setSelected] = useState('공연');
   const [selectedCategory, setSelectedCategory] =
     useState<Category>('문화생활');
   const [value, setValue] = useState<Date | Date[] | null>(new Date());
 
-  type Category = '문화생활' | '일정';
   let contents = ['공연', '스포츠', '연극', '영화', '체험', '카페', '기타'];
-  type Value = Date[] | Date | null;
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
     if (!files) return;
 
     const fileArray = Array.from(files);
-    setSelectedFiles(fileArray);
-
     const urls = fileArray.map((file) => URL.createObjectURL(file));
-    console.log(urls);
-    setPreviewUrls(urls);
+
+    setSelectedTicketImgFiles(fileArray);
+    setTicketPreviewUrls(urls);
   };
 
   const dateChangeHandler = (date: Value | Date[] | null) => {
     setValue(date);
   };
 
-  const dateConverter = () => {
-    const firstDate = value;
-    console.log(firstDate?.toString);
+  const handleDeleteImage = (id: number) => {
+    setTicketPreviewUrls((prevUrls) => prevUrls.filter((_, i) => i !== id));
+    setSelectedTicketImgFiles((prevFiles) =>
+      prevFiles.filter((_, i) => i !== id)
+    );
   };
 
   return (
@@ -163,9 +207,14 @@ export default function Add() {
             />
             <p>티켓 첨부하기</p>
             <div style={{ position: 'relative' }}>
-              {previewUrls.length > 0 ? (
-                previewUrls.map((url, index) => (
-                  <ImagePreview key={index} src={url} alt={`미리보기`} />
+              {ticketPreviewUrls.length > 0 ? (
+                ticketPreviewUrls.map((url, index) => (
+                  <ImagePreviewWrapper key={index}>
+                    <DeleteIcon onClick={() => handleDeleteImage(index)}>
+                      ✕
+                    </DeleteIcon>
+                    <ImagePreview key={index} src={url} alt={`미리보기`} />
+                  </ImagePreviewWrapper>
                 ))
               ) : (
                 <InputBox htmlFor="input-file">업로드</InputBox>
@@ -181,7 +230,19 @@ export default function Add() {
             </div>
 
             <p>사진 첨부하기</p>
+            <div
+              style={{
+                display: 'flex',
+                width: '100%',
+                gap: 10,
+                overflow: 'hidden',
+              }}
+            >
+              <ImageSlider />
+            </div>
+
             <p>장소 등록</p>
+            <Input type={'text'} placeholder={'주소 또는 장소명으로 검색'} />
           </InputContainer>
         )}
       </Content>
