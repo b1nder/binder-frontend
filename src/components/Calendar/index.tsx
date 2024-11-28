@@ -175,7 +175,6 @@ const Calendar = ({ value, onChange }: Props) => {
         formatDay={(locale, date) =>
           date.toLocaleString('en', { day: 'numeric' })
         }
-        maxDate={new Date()}
         showNeighboringMonth={false}
       />
     </>
