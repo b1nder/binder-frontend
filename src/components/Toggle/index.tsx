@@ -20,7 +20,7 @@ const ToggleLabel = styled.span<{ isSelected: Boolean }>`
   border-radius: 40px;
   width: 171px;
   height: 48px;
-  background-color: ${(props) => (props.isSelected ? '#81c784' : '#e8edf2')};
+  background-color: ${(props) => (props.isSelected ? '#81c784' : '#E8EDF2')};
   color: ${(props) => (props.isSelected ? 'white' : '#C1C1C1')};
   transition: all 0.3s ease-out;
 
